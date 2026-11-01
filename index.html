@@ -1,0 +1,789 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RikuRa | Arma tu mesa</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream:#f7efe3;
+  --ink:#49352f;
+  --pink:#b95e76;
+  --sage:#8f9d78;
+  --muted:#8b7468;
+}
+
+body {
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+}
+
+.navbar {
+  background:#f7efe3;
+  border-bottom:1px solid #e7d8c6;
+}
+
+.brand {
+  font:700 1.6rem 'Playfair Display',serif;
+  color:var(--pink);
+  text-decoration:none;
+}
+
+.brand span { color:var(--sage); }
+.nav-link { color:var(--ink);font-weight:600; }
+
+.hero {
+  padding:75px 0 55px;
+  background:
+    radial-gradient(circle at 85% 25%,#ead6d0 0 12%,transparent 13%),
+    radial-gradient(circle at 93% 78%,#dce3d0 0 10%,transparent 11%);
+}
+
+h1,h2,h3 { font-family:'Playfair Display',serif; }
+
+.hero h1 {
+  font-size:clamp(2.7rem,5vw,4.5rem);
+  line-height:1.08;
+}
+
+.hero h1 em {
+  font-style:normal;
+  color:var(--pink);
+}
+
+.hero p {
+  color:#79645a;
+  max-width:540px;
+}
+
+.btn-berry {
+  background:var(--pink);
+  color:white;
+  border:0;
+  border-radius:30px;
+  padding:11px 22px;
+  font-weight:700;
+}
+
+.btn-berry:hover {
+  background:#98475e;
+  color:white;
+}
+
+.btn-soft {
+  background:#fffaf2;
+  color:var(--ink);
+  border:1px solid #dfcdb9;
+  border-radius:30px;
+  padding:10px 20px;
+  font-weight:700;
+}
+
+.hero-art {
+  background:#ead9c5;
+  border:9px solid #fff8ef;
+  border-radius:48% 48% 22px 22px;
+  min-height:300px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:7rem;
+  box-shadow:0 16px 35px #7e5b3b18;
+}
+
+.eyebrow {
+  text-transform:uppercase;
+  color:var(--pink);
+  letter-spacing:.16em;
+  font-size:.76rem;
+  font-weight:700;
+}
+
+.category-tabs {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:20px 0 25px;
+}
+
+.category-btn {
+  border:1px solid #e1cfbb;
+  background:#fff9f1;
+  color:#71584d;
+  padding:10px 17px;
+  border-radius:999px;
+  font-weight:700;
+}
+
+.category-btn.active,
+.category-btn:hover {
+  background:var(--pink);
+  color:white;
+  border-color:var(--pink);
+}
+
+.product-card {
+  height:100%;
+  border:1px solid #eadbca;
+  border-radius:18px;
+  background:#fffaf3;
+  overflow:hidden;
+  transition:.2s;
+  box-shadow:0 7px 20px #5c39210b;
+}
+
+.product-card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 12px 26px #5c392117;
+}
+
+.product-visual {
+  height:170px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:8px;
+  font-size:3.7rem;
+}
+
+.product-visual img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.image-fallback {
+  font-size:.78rem;
+  text-align:center;
+  padding:12px;
+  color:#71584d;
+}
+
+.pink { background:#f3dce0; }
+.sage { background:#e1e7d7; }
+.yellow { background:#f5e8bd; }
+.lilac { background:#e9e0f0; }
+.peach { background:#f4dfce; }
+.blue { background:#dce8ec; }
+
+.product-body { padding:14px; }
+
+.product-body h3 {
+  font:700 1rem 'DM Sans',sans-serif;
+}
+
+.product-body p {
+  font-size:.82rem;
+  color:var(--muted);
+  min-height:36px;
+}
+
+.form-check-input:checked {
+  background-color:var(--pink);
+  border-color:var(--pink);
+}
+
+.selection-panel {
+  background:#fffaf3;
+  border:1px solid #e7d5c2;
+  border-radius:22px;
+  padding:22px;
+  position:sticky;
+  top:90px;
+}
+
+.selected-item {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid #eee0d1;
+  padding:9px 0;
+  font-size:.9rem;
+}
+
+.selected-item button {
+  border:0;
+  background:none;
+  color:var(--pink);
+  font-size:1.2rem;
+}
+
+.custom-box {
+  background:#e8dfd0;
+  border-radius:20px;
+  padding:25px;
+  height:100%;
+}
+
+.step {
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#fff7ee;
+  color:var(--pink);
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.form-control,.form-select {
+  background:#fffdf8;
+  border-color:#e2d0bd;
+  border-radius:11px;
+}
+
+.form-control:focus,.form-select:focus {
+  border-color:#d98b9b;
+  box-shadow:0 0 0 .2rem #d98b9b25;
+}
+
+footer {
+  background:#e9ddcd;
+  color:#79645a;
+  margin-top:60px;
+  padding:28px 0;
+}
+
+.tiny {
+  color:var(--muted);
+  font-size:.78rem;
+}
+
+@media(max-width:767px) {
+  .hero-art {
+    min-height:210px;
+    margin-top:20px;
+  }
+
+  .selection-panel { position:static; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="text-center py-2 small" style="background:#e8d8c4;color:#6b5145">
+✨ Un toque dulce para celebrar momentos especiales ✨
+</div>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+<div class="container">
+
+<a class="brand" href="#">RikuRa</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Abrir menú">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+<li class="nav-item"><a class="nav-link" href="#categorias">Elige tus dulces</a></li>
+<li class="nav-item"><a class="nav-link" href="#como-funciona">Cómo funciona</a></li>
+<li class="nav-item"><a class="btn btn-berry btn-sm" href="#cotizar">Armar mi mesa ♡</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<header class="hero">
+<div class="container">
+<div class="row align-items-center g-4">
+
+<div class="col-lg-7">
+<div class="eyebrow mb-3">Tu fiesta, tus antojos</div>
+
+<h1>Una mesa de dulces <em>hecha a tu gusto.</em></h1>
+
+<p class="my-4">
+Combina gomitas, papitas, chocolates y tus favoritos.
+Tú eliges los productos y creamos una mesa tan bonita como deliciosa.
+</p>
+
+<a class="btn btn-berry me-2" href="#categorias">Elegir productos ↗</a>
+<a class="btn btn-soft" href="#como-funciona">Conocer el proceso</a>
+
+<div class="tiny mt-3">
+♡ Ideal para cumpleaños, bodas, graduaciones y celebraciones.
+</div>
+</div>
+
+<div class="col-lg-5">
+<div class="hero-art">🍬 🍫 🍿</div>
+</div>
+
+</div>
+</div>
+</header>
+
+<main class="container" id="categorias">
+
+<div class="eyebrow">Paso 1 · Personaliza</div>
+
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-2">
+<div>
+<h2>Escoge tus favoritos</h2>
+<p class="text-secondary mb-0">Selecciona una categoría y marca los productos que quieras.</p>
+</div>
+
+<div>Seleccionados: <strong id="selectedCount">0</strong></div>
+</div>
+
+<div class="category-tabs">
+<button class="category-btn active" data-category="todos">🍭 Todos</button>
+<button class="category-btn" data-category="gomitas">🐻 Gomitas</button>
+<button class="category-btn" data-category="papas">🥔 Papas y botanas</button>
+<button class="category-btn" data-category="chocolates">🍫 Chocolates</button>
+<button class="category-btn" data-category="enchilados">🌶️ Enchilados</button>
+<button class="category-btn" data-category="extras">🍪 Extras</button>
+</div>
+
+<div class="row g-3" id="productGrid"></div>
+
+<section class="mt-5" id="como-funciona">
+
+<div class="eyebrow">Paso 2 · Cuéntanos</div>
+<h2 class="mb-4">Tu celebración, a tu manera</h2>
+
+<div class="row g-3">
+
+<div class="col-md-4">
+<div class="custom-box">
+<div class="step">1</div>
+<h3 class="h5">Elige tus productos</h3>
+<p class="mb-0">Combina gomitas, botanas, chocolates y extras favoritos.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="custom-box">
+<div class="step">2</div>
+<h3 class="h5">Personaliza tu evento</h3>
+<p class="mb-0">Dinos la fecha, el tipo de evento, los invitados y la temática.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="custom-box">
+<div class="step">3</div>
+<h3 class="h5">Recibe tu cotización</h3>
+<p class="mb-0">Revisaremos tu selección para preparar una propuesta.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="mt-5" id="cotizar">
+
+<div class="eyebrow">Paso 3 · Casi listo</div>
+<h2 class="mb-4">Cuéntanos sobre tu evento</h2>
+
+<div class="row g-4">
+
+<div class="col-lg-7">
+
+<form id="eventForm" class="row g-3">
+
+<div class="col-md-6">
+<label class="form-label" for="nombre">Tu nombre</label>
+<input class="form-control" id="nombre" required placeholder="¿Cómo te llamas?">
+</div>
+
+<div class="col-md-6">
+<label class="form-label" for="contacto">WhatsApp o teléfono</label>
+<input class="form-control" id="contacto" required placeholder="Tu número">
+</div>
+
+<div class="col-md-6">
+<label class="form-label" for="evento">Tipo de evento</label>
+<select class="form-select" id="evento" required>
+<option value="">Selecciona</option>
+<option>Cumpleaños</option>
+<option>Boda</option>
+<option>Graduación</option>
+<option>Baby shower</option>
+<option>Evento empresarial</option>
+<option>Otro</option>
+</select>
+</div>
+
+<div class="col-md-6">
+<label class="form-label" for="invitados">Número de invitados</label>
+<select class="form-select" id="invitados" required>
+<option value="">Selecciona</option>
+<option>Menos de 30</option>
+<option>30–50</option>
+<option>51–100</option>
+<option>101–150</option>
+<option>Más de 150</option>
+</select>
+</div>
+
+<div class="col-md-6">
+<label class="form-label" for="fecha">Fecha del evento</label>
+<input class="form-control" id="fecha" type="date">
+</div>
+
+<div class="col-md-6">
+<label class="form-label" for="tema">Temática o colores</label>
+<input class="form-control" id="tema" placeholder="Ej. beige, rosa y dorado">
+</div>
+
+<div class="col-12">
+<label class="form-label" for="notas">Detalles adicionales</label>
+<textarea class="form-control" id="notas" rows="3" placeholder="¿Cómo imaginas tu mesa?"></textarea>
+</div>
+
+<div class="col-12">
+<button class="btn btn-berry" type="submit">Preparar mi solicitud ♡</button>
+<p class="tiny mt-2">Se abrirá WhatsApp con tu solicitud preparada.</p>
+</div>
+
+</form>
+</div>
+
+<div class="col-lg-5">
+
+<aside class="selection-panel">
+<h3>Tu selección ♡</h3>
+<p class="tiny">Aquí aparecerán los productos elegidos.</p>
+
+<div id="selectedItems">
+<p class="text-secondary small">Todavía no has elegido productos.</p>
+</div>
+
+<div class="d-flex justify-content-between mt-3 pt-3 border-top">
+<strong>Total de productos</strong>
+<strong id="summaryCount">0</strong>
+</div>
+
+<button class="btn btn-soft w-100 mt-3" id="clearSelection" type="button">
+Limpiar selección
+</button>
+
+<p class="tiny mt-3">Los precios y cantidades se confirman en la cotización.</p>
+</aside>
+
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+
+<div>
+<a class="brand" href="#">RikuRa <span>✿</span></a>
+<div class="tiny">Momentos bonitos, sabores inolvidables.</div>
+</div>
+
+<div class="align-self-md-end">© 2026 · Mesa de dulces personalizable</div>
+
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+// PRODUCTOS
+// Todos los productos tienen un ID diferente.
+
+const products = [
+
+{id:1, name:"Tiburones", cat:"gomitas", image:"gomitas de tiburon.jpg", color:"blue", desc:"Gomitas frutales con forma de tiburón."},
+
+{id:2, name:"Panditas", cat:"gomitas", image:"panditas.jpg", color:"pink", desc:"Ositos de goma suaves y coloridos."},
+
+{id:3, name:"Viboritas", cat:"gomitas", image:"viboritas.jpg", color:"yellow", desc:"Gomitas ácidas y dulces."},
+
+{id:4, name:"Aros de durazno", cat:"gomitas", image:"aros de durazno.jpg", color:"peach", desc:"Aritos suaves sabor durazno."},
+
+{id:5, name:"Aros de Manzana", cat:"gomitas", image:"aros de manzana.jpg", color:"sage", desc:"Dulces con sabor a manzana."},
+
+{id:6, name:"Papas clásicas", cat:"papas", image:"papas clasicas.jpg", color:"yellow", desc:"Papas crujientes con sal."},
+
+{id:7, name:"Papas adobadas", cat:"papas", image:"papas adobadas.jpg", color:"sage", desc:"Botana con sabor cítrico."},
+
+{id:8, name:"Churritos naturales", cat:"papas", image:"churritos naturales.jpg", color:"pink", desc:"Crujientes churritos con su sabor tradicional, ideales para cualquier antojo."},
+
+{id:9, name:"Churritos enchilados", cat:"papas", image:"churritos enchilados.jpg", color:"peach", desc:"Churritos crujientes con un toque picosito que les da un sabor irresistible."},
+
+{id:10, name:"Cacahuates naturales", cat:"papas", image:"cacahuates naturales.jpg", color:"yellow", desc:"Cacahuates tostados y crujientes, perfectos para acompañar tus momentos favoritos."},
+
+{id:11, name:"Cacahuates enchilados", cat:"papas", image:"cacahuates enchilados.jpg", color:"yellow", desc:"Cacahuates crujientes con un toque de chile para quienes disfrutan los sabores picositos."},
+
+{id:12, name:"Conejito Turin", cat:"chocolates", image:"conejito turin.jpg", color:"peach", desc:"Bocaditos de chocolate surtidos."},
+
+{id:13, name:"Bombones de chocolate", cat:"chocolates", image:"bombones.jpg", color:"lilac", desc:"Suaves y esponjosos."},
+
+{id:14, name:"Ferrero", cat:"chocolates", image:"ferrero.jpg", color:"pink", desc:"Pequeños chocolates de colores."},
+
+{id:15, name:"Pretzels", cat:"chocolates", image:"pretzels con chocolate.jpg", color:"pink", desc:"Un toque salado y dulce para equilibrar."},
+
+{id:16, name:"Lunetas", cat:"chocolates", image:"lunetas.jpg", color:"pink", desc:"Dale un toque colorido y con sabor chocolate."},
+
+{id:17, name:"Mangos enchilados", cat:"enchilados", image:"mangos enchilados.jpg", color:"peach", desc:"Dulces enchilados con toque picosito."},
+
+{id:18, name:"Manzanas con chamoy", cat:"enchilados", image:"manzana chamoy.jpg", color:"blue", desc:"Dulces enchilados con toque picosito."},
+
+{id:19, name:"Uvas envueltas con chamoy", cat:"enchilados", image:"uvas con chamoy.jpg", color:"peach", desc:"Combinación picosita y dulce."},
+
+{id:20, name:"Galletas con chispas de chocolate", cat:"extras", image:"galletas.jpg", color:"yellow", desc:"Galletitas dulces en tamaño pequeño."}
+
+];
+
+// SELECCIÓN DE PRODUCTOS
+
+const selected = new Set();
+
+const grid = document.getElementById("productGrid");
+
+// MOSTRAR PRODUCTOS
+
+function renderProducts(cat = "todos") {
+
+  grid.innerHTML = "";
+
+  products
+    .filter(p => cat === "todos" || p.cat === cat)
+    .forEach(p => {
+
+      const col = document.createElement("div");
+      col.className = "col-6 col-md-4 col-xl-3";
+
+      col.innerHTML = `
+        <article class="product-card">
+
+          <div class="product-visual ${p.color}">
+
+            <img
+              src="RikuRa%20mesa%20de%20dulces/${encodeURIComponent(p.image)}"
+              alt="${p.name}"
+              loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            >
+
+            <div class="image-fallback" style="display:none">
+              No se encontró la imagen:<br>
+              <strong>${p.image}</strong><br>
+              Revisa el nombre y la extensión del archivo.
+            </div>
+
+          </div>
+
+          <div class="product-body">
+
+            <h3>${p.name}</h3>
+            <p>${p.desc}</p>
+
+            <div class="d-flex justify-content-between align-items-center">
+
+              <label class="small" for="prod-${p.id}">
+                Lo quiero
+              </label>
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="prod-${p.id}"
+                ${selected.has(p.id) ? "checked" : ""}
+                aria-label="Seleccionar ${p.name}"
+              >
+
+            </div>
+
+          </div>
+        </article>
+      `;
+
+      col.querySelector("input").addEventListener("change", e => {
+
+        if (e.target.checked) {
+          selected.add(p.id);
+        } else {
+          selected.delete(p.id);
+        }
+
+        renderSelection();
+
+      });
+
+      grid.appendChild(col);
+
+    });
+
+}
+
+// ACTUALIZAR RESUMEN
+
+function renderSelection() {
+
+  const target = document.getElementById("selectedItems");
+
+  const chosen = products.filter(p => selected.has(p.id));
+
+  document.getElementById("selectedCount").textContent = chosen.length;
+
+  document.getElementById("summaryCount").textContent = chosen.length;
+
+  if (!chosen.length) {
+
+    target.innerHTML = '<p class="text-secondary small">Todavía no has elegido productos.</p>';
+
+    return;
+  }
+
+  target.innerHTML = "";
+
+  chosen.forEach(p => {
+
+    const row = document.createElement("div");
+    row.className = "selected-item";
+
+    const name = document.createElement("span");
+    name.textContent = p.name;
+
+    const remove = document.createElement("button");
+
+    remove.type = "button";
+    remove.textContent = "×";
+    remove.setAttribute("aria-label", "Quitar " + p.name);
+
+    remove.onclick = () => {
+
+      selected.delete(p.id);
+
+      const cb = document.getElementById("prod-" + p.id);
+
+      if (cb) {
+        cb.checked = false;
+      }
+
+      renderSelection();
+
+    };
+
+    row.append(name, remove);
+
+    target.appendChild(row);
+
+  });
+
+}
+
+// FILTROS DE CATEGORÍAS
+
+document.querySelectorAll(".category-btn").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    document.querySelectorAll(".category-btn").forEach(b => {
+      b.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+    renderProducts(btn.dataset.category);
+
+  });
+
+});
+
+// LIMPIAR SELECCIÓN
+
+document.getElementById("clearSelection").onclick = () => {
+
+  selected.clear();
+
+  const activeCategory = document.querySelector(".category-btn.active").dataset.category;
+
+  renderProducts(activeCategory);
+
+  renderSelection();
+
+};
+
+// GENERAR SOLICITUD PARA WHATSAPP
+
+document.getElementById("eventForm").addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  // Datos del cliente
+
+  const nombre = document.getElementById("nombre").value;
+  const contacto = document.getElementById("contacto").value;
+  const evento = document.getElementById("evento").value;
+  const invitados = document.getElementById("invitados").value;
+
+  const fecha = document.getElementById("fecha").value || "Por definir";
+  const tema = document.getElementById("tema").value || "Por definir";
+  const notas = document.getElementById("notas").value || "Sin comentarios";
+
+  // Productos seleccionados
+
+  const productosElegidos = products
+    .filter(producto => selected.has(producto.id))
+    .map(producto => "• " + producto.name)
+    .join("\n");
+
+  const lista = productosElegidos || "Sin productos seleccionados";
+
+  // Mensaje de WhatsApp
+
+  const mensaje = `
+¡Hola! 👋 Quiero solicitar una cotización para una mesa de dulces de RikuRa 🍬
+
+DATOS DEL CLIENTE
+Nombre: ${nombre}
+Teléfono: ${contacto}
+
+DATOS DEL EVENTO
+Tipo de evento: ${evento}
+Número de invitados: ${invitados}
+Fecha: ${fecha}
+Temática y colores: ${tema}
+Detalles adicionales: ${notas}
+
+PRODUCTOS ELEGIDOS
+${lista}
+
+¿Me pueden enviar una cotización personalizada?
+¡Muchas gracias!
+`;
+
+  // Número de WhatsApp de RikuRa
+
+  const numeroWhatsApp = "525559470688";
+
+  // Crear enlace
+
+  const enlace = "https://wa.me/" + numeroWhatsApp
+    + "?text=" + encodeURIComponent(mensaje);
+
+  // Abrir WhatsApp
+
+  window.open(enlace, "_blank");
+
+});
+
+// INICIAR PÁGINA
+
+renderProducts();
+
+renderSelection();
+
+</script>
+
+</body>
+</html>
